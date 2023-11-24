@@ -2,9 +2,9 @@ import logo from '../../../assets/logo.png'
 
 const Footer = () => {
     return (
-        <footer className="footer p-10 text-base-content bg-white">
+        <footer className=" footer p-10 text-base-content ">
             <nav>
-                <img className='w-[60px] h-[60px]' src={logo} alt="" />
+                <img className='w-[60px] h-[60px] rounded-full' src={logo} alt="" />
                 <p className="font-bold footer-title">
                     HarvestHub: <br /> Uniting Hearts, Reducing Waste
                 </p>
