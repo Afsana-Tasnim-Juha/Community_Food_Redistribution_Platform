@@ -1,15 +1,39 @@
 import { useEffect, useState } from "react";
 import FeaturedFoodsCard from "./FeaturedFoodsCard";
+import { useLoaderData } from "react-router-dom";
 
 
 
 
 const FeaturedFoods = () => {
     const [featuredFoods, setFeaturedFoods] = useState([]);
+    const [itemsPerPage, setItemsPerPage] = useState(6);
 
+    const { count } = useLoaderData();
+
+    const numberOfPages = Math.ceil(count / itemsPerPage);
+
+    //ONE WAY FOR PAGINATION
+
+    //const pages = [];
+    //for (let i = 0; i < numberOfPages; i++) {
+    //  pages.push(i);
+    //}
+    //console.log(pages);
+
+    //ANOTHER WAY
+
+    const pages = [...Array(numberOfPages).keys()];
+
+    const handleItemsPerPageChange = e => {
+
+        const val = parseInt(e.target.value);
+        console.log(val);
+        setItemsPerPage(val);
+    }
 
     useEffect(() => {
-        fetch('featuredFoods.json')
+        fetch('http://localhost:5000/featuredFoods')
             .then(res => res.json())
             .then(data => {
                 setFeaturedFoods(data);
@@ -32,6 +56,18 @@ const FeaturedFoods = () => {
                     }
                 </div>
             </div>
+            <div className="text-center mt-4">
+                {
+                    pages.map(page => <button className="btn text-center mr-2" key={page}>{page}</button>)
+                }
+                <select value={itemsPerPage} onChange={handleItemsPerPageChange} name="" id="">
+                    <option value="6">6</option>
+                    <option value="12">12</option>
+                    <option value="18">18</option>
+                </select>
+
+            </div>
+
         </div>
     );
 };
