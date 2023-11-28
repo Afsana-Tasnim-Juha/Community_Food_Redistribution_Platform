@@ -1,55 +1,18 @@
 import { useEffect, useState } from "react";
 import FeaturedFoodsCard from "./FeaturedFoodsCard";
-import { Link } from "react-router-dom";
-//import { useLoaderData } from "react-router-dom";
-
-
+import { useNavigate } from "react-router-dom";
 
 
 const FeaturedFoods = () => {
     const [featuredFoods, setFeaturedFoods] = useState([]);
 
     const [dataLength, setDataLength] = useState(6);
-    //const [currentPage, setCurrentPage] = useState(0);
-    //const [itemsPerPage, setItemsPerPage] = useState(6);
+    const navigate = useNavigate();
 
-    //const { count } = useLoaderData();
-
-    //const numberOfPages = Math.ceil(count / itemsPerPage);
-
-    //ONE WAY FOR PAGINATION
-
-    //const pages = [];
-    //for (let i = 0; i < numberOfPages; i++) {
-    //  pages.push(i);
-    //}
-    //console.log(pages);
-
-    //ANOTHER WAY
-
-    //const pages = [...Array(numberOfPages).keys()];
-
-    {/*const handleItemsPerPageChange = e => {
-
-        const val = parseInt(e.target.value);
-        console.log(val);
-        setItemsPerPage(val);
-        setCurrentPage(0);
+    const GoToAvailableFoods = () => {
+        navigate("/AvailableFoods", { state: { featuredFoods: featuredFoods } })
     }
 
-    const handlePrevPage = () => {
-        if (currentPage > 0) {
-            setCurrentPage(currentPage - 1);
-        }
-
-    }
-
-    const handleNextPage = () => {
-        if (currentPage < pages.length - 1) {
-            setCurrentPage(currentPage + 1);
-        }
-
-    } */}
 
     useEffect(() => {
         fetch('http://localhost:5000/featuredFoods')
@@ -58,6 +21,7 @@ const FeaturedFoods = () => {
                 setFeaturedFoods(data);
             })
     }, [])
+
     return (
         <div>
             <div className="text-center mt-6">
@@ -75,25 +39,11 @@ const FeaturedFoods = () => {
                     }
                 </div>
             </div>
-            {/*   <div className="text-center mt-4  ">
-                <p>current page: {currentPage}</p>
-                <button onClick={handlePrevPage} className="btn mr-2">Prev</button>
-                {
-                    pages.map(page => <button
-                        onClick={() => setCurrentPage(page)}
-                        className="btn text-center mr-2 " key={page}>{page}</button>)
-                }
-                <button onClick={handleNextPage} className="btn">Next</button>
-                <select value={itemsPerPage} onChange={handleItemsPerPageChange} name="" id="">
-                    <option value="6">6</option>
-                    <option value="12">12</option>
-                    <option value="18">18</option>
-                </select>
 
-            </div>*/ }
             <div className="text-center dataLength === featuredFoods.length ? 'hidden' : '' ">
-                <Link to="/AvailableFoods"
-                    onClick={() => { setDataLength(featuredFoods.length) }} className="btn btn-accent mt-4 ">Show All</Link>
+                <button
+                    onClick={GoToAvailableFoods} className="btn btn-accent mt-4 ">Show All
+                </button>
             </div>
 
         </div>
