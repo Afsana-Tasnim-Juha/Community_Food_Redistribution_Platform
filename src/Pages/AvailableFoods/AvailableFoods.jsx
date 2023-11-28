@@ -11,6 +11,7 @@ const AvailableFoods = () => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+    const [sortOrder, setSortOrder] = useState("asc");
 
     //handle search button
 
@@ -19,6 +20,24 @@ const AvailableFoods = () => {
             food.foodName.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setSearchResults(results);
+    };
+
+
+    // handle sorting button
+    const handleSort = () => {
+        const sortedResults = [...featuredFoods].sort((a, b) => {
+            const dateA = new Date(a.expiredDateTime).getTime();
+            const dateB = new Date(b.expiredDateTime).getTime();
+
+            if (sortOrder === "asc") {
+                return dateA - dateB;
+            } else {
+                return dateB - dateA;
+            }
+        });
+
+        setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+        setSearchResults(sortedResults);
     };
 
 
@@ -33,6 +52,10 @@ const AvailableFoods = () => {
 
                 <button
                     onClick={handleSearch} className="btn btn-accent ">Search
+                </button>
+
+                <button onClick={handleSort} className="btn btn-accent ml-2">
+                    Sort by Expire Date ({sortOrder === "asc" ? "Ascending" : "Descending"})
                 </button>
 
             </div>
