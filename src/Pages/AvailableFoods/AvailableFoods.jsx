@@ -29,11 +29,7 @@ const AvailableFoods = () => {
             const dateA = new Date(a.expiredDateTime).getTime();
             const dateB = new Date(b.expiredDateTime).getTime();
 
-            if (sortOrder === "asc") {
-                return dateA - dateB;
-            } else {
-                return dateB - dateA;
-            }
+            return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
         });
 
         setSortOrder(sortOrder === "asc" ? "desc" : "asc");

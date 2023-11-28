@@ -8,6 +8,7 @@ import MyFoodRequest from "../Pages/MyFoodRequest/MyFoodRequest";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 import FoodsDetails from "../Pages/FoodsDetails/FoodsDetails";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 
 
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement: <ErrorPage />,
 
         children: [
             {
