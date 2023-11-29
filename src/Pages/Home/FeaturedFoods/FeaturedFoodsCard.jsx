@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 
 
 const FeaturedFoodsCard = ({ featuredFood }) => {
-    const { foodName, foodImage, viewDetailButton, additionalNotes, donatorName, donatorImage, quantity, pickupLocation, expiredDateTime, } = featuredFood;
+    const { _id, foodName, foodImage, viewDetailButton, additionalNotes, donatorName, donatorImage, quantity, pickupLocation, expiredDateTime } = featuredFood;
 
     return (
         <div className="card w-96 bg-base-100 shadow-xl">

@@ -29,8 +29,10 @@ const router = createBrowserRouter([
                 element: <AvailableFoods></AvailableFoods>,
             },
             {
-                path: "/FoodsDetails",
+                path: "/FoodsDetails/:id",
                 element: <FoodsDetails></FoodsDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/featuredFoods/${params.id}`)
+
             },
             {
                 path: "/AddFood",

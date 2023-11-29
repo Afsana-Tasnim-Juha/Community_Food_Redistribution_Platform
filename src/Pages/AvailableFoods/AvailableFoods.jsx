@@ -5,6 +5,9 @@ import { Link, useLocation } from "react-router-dom";
 
 
 const AvailableFoods = () => {
+
+
+
     const location = useLocation();
     console.log(location.state);
     const { featuredFoods } = location.state || {};
@@ -46,9 +49,13 @@ const AvailableFoods = () => {
                     className="input input-bordered w-full max-w-xs"
                     onChange={(e) => setSearchTerm(e.target.value)} />
 
+
+
                 <button
                     onClick={handleSearch} className="btn btn-accent ">Search
                 </button>
+
+
 
                 <button onClick={handleSort} className="btn btn-accent ml-2">
                     Sort by Expire Date ({sortOrder === "asc" ? "Ascending" : "Descending"})
@@ -77,7 +84,9 @@ const AvailableFoods = () => {
 
 
                                     <div className="card-actions">
-                                        <Link to="/FoodsDetails" className="btn btn-accent w-full">View Detail</Link>
+                                        <Link to={`/FoodsDetails/${food._id}`}>
+                                            <button className="btn btn-accent w-full">View Detail</button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -104,9 +113,12 @@ const AvailableFoods = () => {
                                     <p><span className="font-bold">Additional Notes:</span> {food.additionalNotes}</p>
                                     <p><span className="font-bold">Expired Date:</span> {food.expiredDateTime}</p>
 
-
                                     <div className="card-actions">
-                                        <Link to="/FoodsDetails" className="btn btn-accent w-full">View Detail</Link>
+
+                                        <Link to={`/FoodsDetails/${food._id}`}>
+                                            <button className="btn btn-accent w-full">View Detail</button>
+                                        </Link>
+
                                     </div>
                                 </div>
 
