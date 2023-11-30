@@ -4,9 +4,27 @@ import { FaGithub } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
+import app from '../../firebase/firebase.config';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 
 const Login = () => {
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                //Navigate after login
+
+                navigate(location?.state ? location.state : '/');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
     const { signIn } = useContext(AuthContext);
     const location = useLocation();
@@ -67,7 +85,7 @@ const Login = () => {
                         <div >
                             <h5 className='text-center font-semibold'>Or Login With</h5>
                             <div className='flex gap-4 justify-center mt-2'>
-                                <button className='btn'> <FcGoogle /></button>
+                                <button onClick={handleGoogleSignIn} className='btn'> <FcGoogle /></button>
                                 <button className='btn'> <FaGithub /></button>
                             </div>
                             <p className='mt-2 text-center'>New user? <Link to="/Registration"><span className='text-teal-500 font-bold'>Register</span> here</Link></p>
