@@ -127,7 +127,7 @@ const AddFood = () => {
                         </label>
                         <label className="input-group">
 
-                            <input type="text" name="dPhoto" placeholder="Donator Photo url" className="input input-bordered w-full" />
+                            <input type="photo" name="dPhoto" placeholder="Donator Photo url" className="input input-bordered w-full" />
                         </label>
                     </div>
                 </div>
