@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
@@ -13,14 +13,28 @@ const FoodsDetails = () => {
 
     const { user } = useContext(AuthContext);
 
+
+
     const handleSubmit = event => {
         event.preventDefault();
 
 
-        const requestOrder = {
+        const request = {
             foodImage, _id, foodName, quantity, expiredDateTime, pickupLocation, DonatorEmail, donatorName, RequestDate, additionalNotes
         }
-        console.log(requestOrder);
+        console.log(request);
+
+        fetch('http://localhost:5000/request', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(request),
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
 
 
     };
