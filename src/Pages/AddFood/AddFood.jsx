@@ -19,7 +19,24 @@ const AddFood = () => {
         const newFood = { name, quantity, pickup, expired, status, dName, dEmail, dPhoto, photo }
 
         console.log(newFood);
+
+
+        //Send data to the server
+
+        fetch('http://localhost:5000/food', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newFood),
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
     }
+
+
 
     return (
         <div className="bg-teal-100 p-24">
