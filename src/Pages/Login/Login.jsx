@@ -1,13 +1,18 @@
 import login from '../../assets/Resources/login/login.jpg';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
+
 
 const Login = () => {
 
     const { signIn } = useContext(AuthContext);
+    const location = useLocation();
+    console.log(location);
+
+    const navigate = useNavigate();
 
     const handleLogin = event => {
         event.preventDefault();
@@ -21,7 +26,9 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
+                //Navigate after login
 
+                navigate(location?.state ? location.state : '/');
             })
             .catch((error) => {
                 console.log(error);
