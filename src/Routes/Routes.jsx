@@ -10,6 +10,7 @@ import Registration from "../Pages/Registration/Registration";
 import FoodsDetails from "../Pages/FoodsDetails/FoodsDetails";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import PrivateRoutes from "./PrivateRoutes";
+import ManageSingleFood from "../Pages/ManageMyFoods/ManageSingleFood";
 
 
 
@@ -44,6 +45,12 @@ const router = createBrowserRouter([
                 path: "/ManageMyFoods",
                 element: <PrivateRoutes><ManageMyFoods></ManageMyFoods></PrivateRoutes>,
                 loader: () => fetch('http://localhost:5000/food'),
+            },
+            {
+                path: "/ManageSingleFood/:id",
+                element: <PrivateRoutes><ManageSingleFood></ManageSingleFood></PrivateRoutes>,
+                loader: ({ params }) => fetch(`http://localhost:5000/food/${params.id}`),
+
             },
             {
                 path: "/MyFoodRequest",

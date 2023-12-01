@@ -46,7 +46,7 @@ const AvailableFoods = () => {
 
     return (
         <div>
-            <div>
+            <div >
 
                 {
                     foods.map(addFood => <AddFoodCard key={addFood._id}

@@ -1,8 +1,9 @@
 import { FaEdit } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import ManageSingleFood from './ManageSingleFood';
 
 
 
@@ -30,7 +31,7 @@ const ManageMyFoods = () => {
                         if (data.deletedCount > 0) {
                             Swal.fire(
                                 'Deleted!',
-                                'Your coffee has been deleted.',
+                                'Your food has been deleted.',
                                 'success'
                             )
                             //remove the food from the UI
@@ -52,7 +53,7 @@ const ManageMyFoods = () => {
                 <table className="table bg-teal-50">
                     {/* head */}
                     <thead>
-                        <tr>
+                        <tr className="bg-teal-500">
                             <th>
                                 <label>
                                     <input type="checkbox" className="checkbox" />
@@ -65,6 +66,7 @@ const ManageMyFoods = () => {
                             <th>Donator Name</th>
                             <th>Donator email</th>
                             <th>Food Status</th>
+                            <th>Action</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -118,7 +120,10 @@ const ManageMyFoods = () => {
                                 <th>
 
                                     <div className="flex gap-1 ">
-                                        <button  > <FaEdit className="w-[20px] h-[20px]"></FaEdit></button>
+
+                                        <Link to={`/ManageSingleFood/${food._id}`}>
+                                            <button ><FaEdit className="w-[20px] h-[20px]"></FaEdit></button>
+                                        </Link>
                                         <button onClick={() => handleManageFood(food._id)}><MdDelete className="w-[20px] h-[20px]" /></button>
                                     </div>
 
