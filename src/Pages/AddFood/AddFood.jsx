@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 
 
@@ -49,111 +50,117 @@ const AddFood = () => {
 
 
     return (
-        <div className="bg-teal-50 p-24">
-            <h2 className="text-[#374151] text-3xl font-extrabold">Add food item</h2>
+
+        <div>
+            <Helmet>
+                <title>HarvestHub | AddFood</title>
+            </Helmet>
+            <div className="bg-teal-50 p-24">
+                <h2 className="text-[#374151] text-3xl font-extrabold">Add food item</h2>
 
 
-            <form onSubmit={handleAddFood} className="mt-4 ">
+                <form onSubmit={handleAddFood} className="mt-4 ">
 
-                <div className=" md:flex gap-4">
-                    <div className="form-control md:w-1/2">
-                        <label className="label font-bold ">
-                            <span className="label-text ">Food Name</span>
-                        </label>
-                        <label className="input-group">
+                    <div className=" md:flex gap-4">
+                        <div className="form-control md:w-1/2">
+                            <label className="label font-bold ">
+                                <span className="label-text ">Food Name</span>
+                            </label>
+                            <label className="input-group">
 
-                            <input type="text" name="name" placeholder="Food Name" className="input input-bordered w-full" />
-                        </label>
+                                <input type="text" name="name" placeholder="Food Name" className="input input-bordered w-full" />
+                            </label>
+                        </div>
+                        <div className="form-control md:w-1/2">
+                            <label className="label font-bold">
+                                <span className="label-text">Food Quantity</span>
+                            </label>
+                            <label className="input-group">
+
+                                <input type="text" name="quantity" placeholder="Food quantity" className="input input-bordered w-full" />
+                            </label>
+                        </div>
                     </div>
-                    <div className="form-control md:w-1/2">
+
+                    <div className="flex gap-4">
+                        <div className="form-control md:w-1/2">
+                            <label className="label font-bold">
+                                <span className="label-text">Pickup Location</span>
+                            </label>
+                            <label className="input-group">
+
+                                <input type="text" name="pickup" placeholder="Pickup Location" className=" input input-bordered w-full" />
+                            </label>
+                        </div>
+
+                        <div className="form-control md:w-1/2">
+                            <label className="label font-bold">
+                                <span className="label-text">Expired Date</span>
+                            </label>
+                            <label className="input-group">
+
+                                <input type="text" name="expired" placeholder="Expired Date" className="input input-bordered w-full" />
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div className="flex gap-4">
+
+                        <div className="form-control md:w-1/4">
+                            <label className="label font-bold">
+                                <span className="label-text">Food Status</span>
+                            </label>
+                            <label className="input-group">
+
+                                <input type="text" name="status" value="Available" placeholder="Food Status" className="input input-bordered w-full" />
+                            </label>
+                        </div>
+
+                        <div className="form-control md:w-1/4">
+                            <label className="label font-bold">
+                                <span className="label-text">Donator Name </span>
+                            </label>
+                            <label className="input-group">
+
+                                <input type="text" name="dName" placeholder="Donator Name " className="input input-bordered w-full" />
+                            </label>
+                        </div>
+
+
+                        <div className="form-control md:w-1/4 ">
+                            <label className="label font-bold">
+                                <span className="label-text">Donator Email</span>
+                            </label>
+                            <label className="input-group">
+
+                                <input type="text" name="dEmail" placeholder="Donator Email" className="input input-bordered w-full" />
+                            </label>
+                        </div>
+                        <div className="form-control md:w-1/4 ">
+                            <label className="label font-bold">
+                                <span className="label-text">Donator Photo</span>
+                            </label>
+                            <label className="input-group">
+
+                                <input type="photo" name="dPhoto" placeholder="Donator Photo url" className="input input-bordered w-full" />
+                            </label>
+                        </div>
+                    </div>
+                    <div className="form-control md:w-full ">
                         <label className="label font-bold">
-                            <span className="label-text">Food Quantity</span>
+                            <span className="label-text">Photo</span>
                         </label>
                         <label className="input-group">
 
-                            <input type="text" name="quantity" placeholder="Food quantity" className="input input-bordered w-full" />
-                        </label>
-                    </div>
-                </div>
-
-                <div className="flex gap-4">
-                    <div className="form-control md:w-1/2">
-                        <label className="label font-bold">
-                            <span className="label-text">Pickup Location</span>
-                        </label>
-                        <label className="input-group">
-
-                            <input type="text" name="pickup" placeholder="Pickup Location" className=" input input-bordered w-full" />
-                        </label>
-                    </div>
-
-                    <div className="form-control md:w-1/2">
-                        <label className="label font-bold">
-                            <span className="label-text">Expired Date</span>
-                        </label>
-                        <label className="input-group">
-
-                            <input type="text" name="expired" placeholder="Expired Date" className="input input-bordered w-full" />
-                        </label>
-                    </div>
-
-                </div>
-
-                <div className="flex gap-4">
-
-                    <div className="form-control md:w-1/4">
-                        <label className="label font-bold">
-                            <span className="label-text">Food Status</span>
-                        </label>
-                        <label className="input-group">
-
-                            <input type="text" name="status" value="Available" placeholder="Food Status" className="input input-bordered w-full" />
-                        </label>
-                    </div>
-
-                    <div className="form-control md:w-1/4">
-                        <label className="label font-bold">
-                            <span className="label-text">Donator Name </span>
-                        </label>
-                        <label className="input-group">
-
-                            <input type="text" name="dName" placeholder="Donator Name " className="input input-bordered w-full" />
+                            <input type="text" name="photo" placeholder="Photo url" className="input input-bordered w-full" />
                         </label>
                     </div>
 
 
-                    <div className="form-control md:w-1/4 ">
-                        <label className="label font-bold">
-                            <span className="label-text">Donator Email</span>
-                        </label>
-                        <label className="input-group">
-
-                            <input type="text" name="dEmail" placeholder="Donator Email" className="input input-bordered w-full" />
-                        </label>
-                    </div>
-                    <div className="form-control md:w-1/4 ">
-                        <label className="label font-bold">
-                            <span className="label-text">Donator Photo</span>
-                        </label>
-                        <label className="input-group">
-
-                            <input type="photo" name="dPhoto" placeholder="Donator Photo url" className="input input-bordered w-full" />
-                        </label>
-                    </div>
-                </div>
-                <div className="form-control md:w-full ">
-                    <label className="label font-bold">
-                        <span className="label-text">Photo</span>
-                    </label>
-                    <label className="input-group">
-
-                        <input type="text" name="photo" placeholder="Photo url" className="input input-bordered w-full" />
-                    </label>
-                </div>
-
-
-                <input type="submit" value="Add Food" className="btn btn-block mt-4 bg-teal-500" />
-            </form>
+                    <input type="submit" value="Add Food" className="btn btn-block mt-4 bg-teal-500" />
+                </form>
+            </div>
         </div>
     );
 };

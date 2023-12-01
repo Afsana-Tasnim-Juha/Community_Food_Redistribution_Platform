@@ -2,10 +2,14 @@
 import { useState } from "react";
 import { Link, useLoaderData, useLocation } from "react-router-dom";
 import AddFoodCard from "../AddFood/AddFoodCard";
+import { Helmet } from "react-helmet-async";
 
 
 
 const AvailableFoods = () => {
+    <Helmet>
+        <title>HarvestHub | AvailableFoods</title>
+    </Helmet>
 
     const foods = useLoaderData();
 
@@ -46,6 +50,9 @@ const AvailableFoods = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>HarvestHub | AvailableFoods</title>
+            </Helmet>
             <div >
 
                 {

@@ -4,10 +4,15 @@ import { MdDelete } from "react-icons/md";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import ManageSingleFood from './ManageSingleFood';
+import { Helmet } from "react-helmet-async";
 
 
 
 const ManageMyFoods = () => {
+
+    <Helmet>
+        <title>HarvestHub | ManageMyFoods</title>
+    </Helmet>
     const manageFoods = useLoaderData();
     const [manageFood, setManageFood] = useState(manageFoods);
 
@@ -48,6 +53,9 @@ const ManageMyFoods = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>HarvestHub | ManageMyFoods</title>
+            </Helmet>
 
             <div className="overflow-x-auto">
                 <table className="table bg-teal-50">
