@@ -6,7 +6,7 @@ const ExtraFeatured1 = () => {
             <h1 className="text-center font-bold text-teal-500 text-3xl mt-12">Why FoodSHare?</h1>
             <p className=" text-center mt-6 mb-6">
                 Food waste is a pervasive issue throughout the entire food system, from farming to consumer  <br />actions. Recent media attention has heightened public awareness of the environmental <br /> and economic costs associated with food waste. This has spurred increased efforts, <br /> both public and private, to salvage safe and nutritious food that would otherwise be discarded. <br /> The focus is on optimizing available food supplies to address concerns about hunger, <br /> resource conservation, and the environmental impact of wastage.</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4  ">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 ">
                 <div className="card w-96 bg-base-100 shadow-xl image-full">
 
                     <div className="card-body bg-teal-500 rounded-xl">

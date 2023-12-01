@@ -25,16 +25,18 @@ const FeaturedFoods = () => {
     return (
         <div>
             <div className="text-center mt-6">
-                <h3 className="text-3xl text-teal-500 font-bold ">Featured Foods</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum perferendis sequi aut perspiciatis dolor deleniti nostrum consectetur voluptate laboriosam, molestiae aliquam eveniet minus sunt fuga? Ad iste adipisci explicabo! Magni!</p>
+                <h3 className="text-3xl text-teal-500 font-bold mt-6 mb-6 ">Featured Foods</h3>
+                <p className="w-1/2 ml-80">
+                    Explore our Community Food Sharing and Surplus Reduction Platform's Featured Foods section—a curated showcase of delightful offerings that embody our commitment to sustainability and community well-being. From local gems to community favorites, these selections capture the essence of shared resources, promoting a more sustainable and nourished future for all.</p>
             </div>
             <div>
-                <p>feature foods: {featuredFoods.length}</p>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
                     {
                         featuredFoods.slice(0, dataLength).map(featuredFood => <FeaturedFoodsCard
                             key={featuredFood._id}
                             featuredFood={featuredFood}
+
                         ></FeaturedFoodsCard>)
                     }
                 </div>

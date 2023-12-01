@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 
 
 const AddFood = () => {
@@ -33,13 +34,22 @@ const AddFood = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Successfully added',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+
+                }
             })
     }
 
 
 
     return (
-        <div className="bg-teal-100 p-24">
+        <div className="bg-teal-50 p-24">
             <h2 className="text-[#374151] text-3xl font-extrabold">Add food item</h2>
 
 

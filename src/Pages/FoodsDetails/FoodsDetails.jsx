@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 
+
 const FoodsDetails = () => {
     const details = useLoaderData();
     console.log(details);
@@ -34,6 +35,8 @@ const FoodsDetails = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+
+
             })
 
 

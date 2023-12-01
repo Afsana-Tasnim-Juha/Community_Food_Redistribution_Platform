@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const AddFoodCard = ({ addFood }) => {
     const { _id, name, photo, quantity, pickup, expired, status, dName, dEmail, dPhoto } = addFood;
     return (
-        <div className="card card-side bg-base-100 shadow-xl">
-            <figure><img className="w-[200px] h-[200px]" src={photo} alt="Movie" /></figure>
+        <div className="card card-side bg-base-50 shadow-xl">
+            <figure><img className="w-[200px] h-[200px] rounded-lg" src={photo} alt="Movie" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
                 <div className="grid grid-cols-3">

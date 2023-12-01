@@ -1,69 +1,136 @@
+import { FaEdit } from "react-icons/fa";
+import { useLoaderData } from "react-router-dom";
+import { MdDelete } from "react-icons/md";
+import { useState } from "react";
+import Swal from "sweetalert2";
 
-import { useTable } from 'react-table';
 
-const ManageMyFoods = ({ foodData }) => {
-    const columns = [
-        // Define columns for your table
-        {
-            Header: 'Food Name',
-            accessor: 'name', // Property name in your data object
-        },
-        {
-            Header: 'Quantity',
-            accessor: 'quantity',
-        },
-        {
-            Header: 'Pickup Location',
-            accessor: 'pickup',
-        },
-        {
-            Header: 'Expired Date',
-            accessor: 'expired',
-        },
-        {
-            Header: 'Food Status',
-            accessor: 'status',
-        },
-        {
-            Header: 'Donator Name',
-            accessor: 'dName',
-        },
-        {
-            Header: 'Donator Email',
-            accessor: 'dEmail',
-        },
-        // Add more columns as needed
-    ];
 
-    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data: foodData || [] });
+const ManageMyFoods = () => {
+    const manageFoods = useLoaderData();
+    const [manageFood, setManageFood] = useState(manageFoods);
 
+    const handleManageFood = _id => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`http://localhost:5000/food/${_id}`, {
+                    method: "DELETE",
+                }).then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your coffee has been deleted.',
+                                'success'
+                            )
+                            //remove the food from the UI
+                            const remaining = manageFood.filter(fo => fo._id !== _id);
+                            setManageFood(remaining);
+
+                        }
+                    })
+
+            }
+        })
+
+    }
 
     return (
         <div>
-            <h2>Manage My Foods</h2>
-            <table {...getTableProps()} className="table">
-                <thead>
-                    {headerGroups.map((headerGroup, index) => (
-                        <tr key={index} {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map(column => (
-                                <th key={column.id} {...column.getHeaderProps()}>{column.render('Header')}</th>
-                            ))}
+
+            <div className="overflow-x-auto">
+                <table className="table bg-teal-50">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th>
+                                <label>
+                                    <input type="checkbox" className="checkbox" />
+                                </label>
+                            </th>
+                            <th>Food Name</th>
+                            <th>Food Quantity</th>
+                            <th>Pickup Location</th>
+                            <th>Expired Date</th>
+                            <th>Donator Name</th>
+                            <th>Donator email</th>
+                            <th>Food Status</th>
+                            <th></th>
                         </tr>
-                    ))}
-                </thead>
-                <tbody {...getTableBodyProps()}>
-                    {rows.map((row, index) => {
-                        prepareRow(row);
-                        return (
-                            <tr key={index} {...row.getRowProps()}>
-                                {row.cells.map(cell => (
-                                    <td key={cell.id} {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                                ))}
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+
+
+
+
+                        {
+                            manageFood.map(food => <tr key={food._id}>
+                                <th>
+                                    <label>
+                                        <input type="checkbox" className="checkbox" />
+                                    </label>
+                                </th>
+                                <td>
+                                    {food.name}
+                                </td>
+                                <td>
+                                    {food.quantity}
+                                </td>
+                                <td>
+                                    {food.pickup}
+                                </td>
+                                <td>
+                                    {food.expired}
+                                </td>
+
+
+                                <td>
+                                    <div className="flex gap-2">
+                                        <div className="avatar">
+                                            <div className="mask mask-squircle w-12 h-12">
+                                                <img src={food.dPhoto} alt="Avatar Tailwind CSS Component" />
+                                            </div>
+                                        </div>
+                                        <div className="mt-4 ">
+                                            {food.dName}
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    {food.dEmail}
+                                </td>
+                                <td>
+                                    {food.status}
+                                </td>
+
+
+                                <th>
+
+                                    <div className="flex gap-1 ">
+                                        <button  > <FaEdit className="w-[20px] h-[20px]"></FaEdit></button>
+                                        <button onClick={() => handleManageFood(food._id)}><MdDelete className="w-[20px] h-[20px]" /></button>
+                                    </div>
+
+                                </th>
+                            </tr>)
+                        }
+
+                    </tbody>
+
+
+                </table>
+            </div>
         </div>
     );
 };
