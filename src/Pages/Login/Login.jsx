@@ -85,7 +85,7 @@ const Login = () => {
                                 </div>
                                 <div className="form-control mt-6">
 
-                                    <input className="btn btn-accent" type="submit" value="Login" />
+                                    <input className="btn btn-accent" type="submit" value="Login please" />
                                 </div>
                             </form>
                             <div >
@@ -94,7 +94,7 @@ const Login = () => {
                                     <button onClick={handleGoogleSignIn} className='btn'> <FcGoogle /></button>
                                     <button className='btn'> <FaGithub /></button>
                                 </div>
-                                <p className='mt-2 text-center'>New user? <Link to="/Registration"><span className='text-teal-500 font-bold'>Register</span> here</Link></p>
+                                <p className='mt-2 text-center'>New user? <Link to="/Registration"><span className='text-teal-600 font-bold'>Register</span> here</Link></p>
                             </div>
                         </div>
                     </div>
